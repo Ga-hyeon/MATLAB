@@ -1,0 +1,29 @@
+function z = exp_2017114912 (start, final, num, a, d)
+switch nargin
+    case 0 
+        error('Must enter start, final, number, h and order')
+    case 1
+        error('Must enter final, number, h and order')
+    case 2
+        error('Must enter number, h and order')
+    case 3
+        error('Must enter h and order')
+    case 4
+        error('Must enter order')
+end
+
+x = linspace(start, final, num);
+init = exp(-a);
+sol = exp(-a);
+n = 1;
+if(d == 0)
+    fx = init;
+else
+    for i = 0 : d-1
+        sol = sol + ((-1)^n)*((exp(-a)*(x-a).^n) / factorial(n));
+        n = n+1;
+    end
+    fx = sol;
+end
+z = plot(x, fx, 'r-.o', 'LineWidth', 3), xlabel('x'), ylabel('y')
+end
